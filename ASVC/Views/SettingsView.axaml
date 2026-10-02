@@ -1,0 +1,86 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ASVC.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="600"
+             x:Class="ASVC.Views.SettingsView">
+
+    <Design.DataContext>
+        <vm:SettingsViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="TextBox.IpAddress">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Watermark" Value="xxx.xxx.xxx.xxx"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="MaxLength" Value="15"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Margin="20" ColumnDefinitions="* Auto">
+        <!-- Контроль стыковки -->
+        <HeaderedContentControl Header="Контроль стыковки"  Background="Gray" Margin="0 0 20 20">
+            <Grid ColumnDefinitions="* *">
+                <Button Grid.Column="0" Content="Начать"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+                <TextBlock Grid.Column="1" Text="Не проверено" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </HeaderedContentControl>
+        <!--Настройка системы-->
+        <HeaderedContentControl Grid.Column="1" Header="Настройка системы"  Background="Gray" Margin="0 0 0 20">
+			<Grid ColumnDefinitions="Auto * *" RowDefinitions="* * * * * * * *">
+                <!--Заголовки-->
+				<TextBlock Grid.Row="0" Grid.Column="0" Text="Устройство" FontWeight="Medium" HorizontalAlignment="Center" Margin="0 0 0 15"/>
+				<TextBlock Grid.Row="0" Grid.Column="1" Text="IP-Адрес" FontWeight="Medium" HorizontalAlignment="Center" />
+				<TextBlock Grid.Row="0" Grid.Column="2" Text="Статус в сети" FontWeight="Medium" HorizontalAlignment="Center"/>
+                <!--ВК 1-->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="ВК1" VerticalAlignment="Center" Margin="0 0 0 15"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Classes="IpAddress" Margin="0 0 0 15"/>
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Spacing="10" Margin="15 0 0 15">
+					<TextBlock  Text="Не определен" VerticalAlignment="Center" />
+                    <ProgressBar IsIndeterminate="True" VerticalAlignment="Center" />
+                </StackPanel>
+                <!--ВК 2-->
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="ВК2" VerticalAlignment="Center" Margin="0 0 0 15"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Classes="IpAddress" Margin="0 0 0 15"/>
+				<StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" Spacing="10" Margin="15 0 0 15">
+                    <TextBlock  Text="Не определен" VerticalAlignment="Center" />
+                    <ProgressBar IsIndeterminate="True" VerticalAlignment="Center" />
+                </StackPanel>
+                <!--ВК 3-->
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="ВК3" VerticalAlignment="Center" Margin="0 0 0 15"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Classes="IpAddress" Margin="0 0 0 15"/>
+				<StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal" Spacing="10" Margin="15 0 0 15">
+                    <TextBlock  Text="Не определен" VerticalAlignment="Center" />
+                    <ProgressBar IsIndeterminate="True" VerticalAlignment="Center" />
+                </StackPanel>
+                <!--ВК 4-->
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="ВК4" VerticalAlignment="Center" Margin="0 0 0 15"/>
+                <TextBox Grid.Row="4" Grid.Column="1" Classes="IpAddress" Margin="0 0 0 15"/>
+                <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal" Spacing="10" Margin="15 0 0 15">
+                    <TextBlock  Text="Не определен" VerticalAlignment="Center" />
+                    <ProgressBar IsIndeterminate="True" VerticalAlignment="Center" />
+                </StackPanel>
+                <!--МПУ-О-->
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="МПУ-О" VerticalAlignment="Center" Margin="0 0 0 15"/>
+                <TextBox Grid.Row="5" Grid.Column="1" Classes="IpAddress" Margin="0 0 0 15"/>
+				<StackPanel Grid.Row="5" Grid.Column="2" Orientation="Horizontal" Spacing="10" Margin="15 0 0 15">
+                    <TextBlock  Text="Не определен" VerticalAlignment="Center" />
+                    <ProgressBar IsIndeterminate="True" VerticalAlignment="Center" />
+                </StackPanel>
+                <!--МПУ-Р-->
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="МПУ-Р" VerticalAlignment="Center"/>
+                <TextBox Grid.Row="6" Grid.Column="1" Classes="IpAddress"/>
+				<StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal" Spacing="10" Margin="15 0 0 0">
+                    <TextBlock  Text="Не определен" VerticalAlignment="Center" />
+                    <ProgressBar IsIndeterminate="True" VerticalAlignment="Center" />
+                </StackPanel>
+
+                <Button Grid.Row="7" Grid.Column="2" HorizontalAlignment="Right" 
+                        Width="150" HorizontalContentAlignment="Center" 
+                        Content="Начать" Margin="0 15 0 0"/>
+            </Grid>
+        </HeaderedContentControl>
+    </Grid>
+</UserControl>

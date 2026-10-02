@@ -1,0 +1,84 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:ASVC.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="650"
+             x:Class="ASVC.Views.MainView"
+             x:DataType="vm:MainViewModel">
+
+    <Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="ToggleButton.CameraControl">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 5"/>
+        </Style>
+        <Style Selector="TextBlock.CameraControlStatus">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </UserControl.Styles>
+    
+	<Grid Margin="20" ColumnDefinitions="Auto *">
+        <StackPanel Grid.Column="0">
+            <!-- Управление видеокамерами -->
+            <HeaderedContentControl Header="Управление видеокамерами"  Background="Gray" Margin="0 0 0 20">
+                <ItemsRepeater ItemsSource="{Binding CamerasControls}">
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate DataType="vm:CameraControlBtn">
+                            <Grid ColumnDefinitions="* *" IsEnabled="{Binding IsEnabled}">
+                                <ToggleButton Grid.Column="0" Content="{Binding Name}" Classes="CameraControl" IsChecked="{Binding IsChecked}"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Status}" Classes="CameraControlStatus"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </HeaderedContentControl>
+
+            <!-- Управление подсветкой видеокамер -->
+            <HeaderedContentControl Header="Управление подсветкой видеокамер"  Background="Gray" Margin="0 0 0 20">
+                <ItemsRepeater ItemsSource="{Binding CamerasBacklightControls}">
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate DataType="vm:CameraControlBtn">
+                            <Grid ColumnDefinitions="* *" IsEnabled="{Binding IsEnabled}">
+                                <ToggleButton Grid.Column="0"  Content="{Binding Name}" Classes="CameraControl" IsChecked="{Binding IsChecked}"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Status, Mode=OneWay}" Classes="CameraControlStatus"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </HeaderedContentControl>
+        </StackPanel>
+        
+        <DockPanel Grid.Column="1" Margin="20 0 0 0">
+            <Image DockPanel.Dock="Top" Source="{Binding CameraImage}" Margin="0 0 0 20"/>
+            
+            <DockPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom" LastChildFill="False">
+                <!-- Температура -->
+                <HeaderedContentControl DockPanel.Dock="Right" Header="Температура" Background="Gray" MinWidth="130">
+                    <Grid ColumnDefinitions="* *">
+						<TextBlock Grid.Column="0" Text="0" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="&#186;C" HorizontalAlignment="Right"/>
+                    </Grid>
+                </HeaderedContentControl>
+
+				<!-- Ток потребления -->
+                <HeaderedContentControl DockPanel.Dock="Right" Header="Ток потребления" Background="Gray" Margin="0 0 20 0" MinWidth="130">
+                    <Grid ColumnDefinitions="* *">
+						<TextBlock Grid.Column="0" Text="0" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="мА" HorizontalAlignment="Right"/>
+                    </Grid>
+                </HeaderedContentControl>
+
+                <!-- Видеокамера -->
+                <HeaderedContentControl DockPanel.Dock="Right" Header="Видеокамера" Background="Gray" Margin="0 0 20 0" MinWidth="130">
+                    <TextBlock Grid.Column="0" Text="{Binding ActiveCameraName}" HorizontalAlignment="Center"/>
+                </HeaderedContentControl>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>
